@@ -11,11 +11,11 @@ async function getPostList() {
     try {
         const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts')
         const posts = await response.json()
-  
+        console.log("I ran get post")
         setPostList(posts.data.posts)
         
     } catch (error) {
-        
+                       
     }
 }
 
@@ -24,10 +24,6 @@ useEffect (() => {
     const checkForToken = localStorage.getItem('token')
     setUserToken(checkForToken)
 }, [])
-
-
-
-getPostList()
 
     return (
         <div id="main">
