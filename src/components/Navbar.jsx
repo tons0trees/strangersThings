@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Navbar = () => {
+const Navbar = ({setReadyToRegister, readyToRegister}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -28,6 +28,7 @@ const Navbar = () => {
                 </label>
                 <input type="submit" value="Log In"/>
             </form>
+            <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button>
         </div>
     );
 };
