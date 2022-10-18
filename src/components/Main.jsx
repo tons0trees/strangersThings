@@ -4,6 +4,7 @@ import {Navbar, PostsDisplay, RegistrationForm} from "./"
 const Main = () => {
 const [postList, setPostList] = useState([])
 const [readyToRegister, setReadyToRegister] = useState(false)
+const [userToken, setUserToken] = useState(null)
 
 async function getPostList() {
     const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts')
@@ -22,8 +23,8 @@ getPostList()
 
     return (
         <div id="main">
-            <Navbar readyToRegister={readyToRegister} setReadyToRegister={setReadyToRegister}/>
-            {readyToRegister ? <RegistrationForm /> : null}
+            <Navbar userToken={userToken} setUserToken={setUserToken} readyToRegister={readyToRegister} setReadyToRegister={setReadyToRegister}/>
+            {readyToRegister ? <RegistrationForm setUserToken={setUserToken} setReadyToRegister={setReadyToRegister}/> : null}
             <PostsDisplay postList={postList} />
         </div>
     )

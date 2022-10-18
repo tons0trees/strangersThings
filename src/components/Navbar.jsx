@@ -1,34 +1,51 @@
 import React, {useState} from 'react'
 
-const Navbar = ({setReadyToRegister, readyToRegister}) => {
+const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     async function logIn(event) {
         event.preventDefault();
+        try {
+            const userToLogin = {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    user: {username: event.target[0].value, password: event.target[1].value}
+                })
+            }
+            const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/users/login',userToLogin)
+            const result = await response.json()
+            const token = result.data.token
+            setUserToken(token);
+            localStorage.removeItem('token')
+            localStorage.setItem('token', token)
+        } catch (error) {
+            console.log('there is an error', error)
+        }
     }
 
     return (
         <div id='navbar'>
             <h2>Stranger's Things</h2>
-            <form id="login-form" onSubmit={logIn}>
+            {userToken
+            ? <button onClick={() => {
+                setUserToken(null);
+                localStorage.removeItem('token');
+            }}>Log Out</button>
+            :<><form id="login-form" onSubmit={logIn}>
                 <label htmlFor='username-input'>
-                    Username:
-                    <input type='text' name='username-input' value={username} onChange={event => {
-                        setUsername(event.target.value);
-                        //this runs every time a letter is typed it would be better if it only ran once
-                    }}/>
+                    Username: 
+                    <input type='text' name='username-input'/>
                 </label>
                 <label htmlFor='password-input'>
-                    Password
-                    <input type='text' name='password-input' value={password} onChange={event => {
-                        setPassword(event.target.value);
-                        //this runs every time a letter is typed it would be better if it only ran once
-                    }}/>
+                    Password: 
+                    <input type='text' name='password-input'/>
                 </label>
                 <input type="submit" value="Log In"/>
             </form>
-            <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button>
+            <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button></>
+            }
         </div>
     );
 };
