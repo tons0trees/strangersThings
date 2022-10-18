@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 
 const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister}) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
 
     async function logIn(event) {
         event.preventDefault();
@@ -29,10 +28,14 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister}) 
         <div id='navbar'>
             <h2>Stranger's Things</h2>
             {userToken
-            ? <button onClick={() => {
+            ? <div>
+                <button>Make New Post
+                </button>
+                <button onClick={() => {
                 setUserToken(null);
                 localStorage.removeItem('token');
             }}>Log Out</button>
+            </div>
             :<><form id="login-form" onSubmit={logIn}>
                 <label htmlFor='username-input'>
                     Username: 

@@ -5,6 +5,7 @@ const Main = () => {
 const [postList, setPostList] = useState([])
 const [readyToRegister, setReadyToRegister] = useState(false)
 const [userToken, setUserToken] = useState(null)
+const [readyToPost, setReadyToPost] = useState()
 
 async function getPostList() {
     const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts')
