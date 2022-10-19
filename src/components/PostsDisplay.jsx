@@ -2,11 +2,11 @@ import React from "react"
 import SinglePost from './SinglePost'
 
 
-const PostsDisplay = ({postList}) => {
+const PostsDisplay = ({postList, userToken, setPostList}) => {
     return (
         <div>
             {postList.map(elem => {
-                return <SinglePost key={elem._id} post={elem} />
+                return <SinglePost key={elem._id} post={elem} userToken={userToken} setPostList={setPostList}/>
             })}
         </div>
     )

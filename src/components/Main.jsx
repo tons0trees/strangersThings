@@ -43,7 +43,7 @@ const Main = () => {
                     setReadyToPost={setReadyToPost}
                 />
             ) : (
-                <PostsDisplay postList={postList} />
+                <PostsDisplay postList={postList} userToken={userToken} setPostList={setPostList}/>
             )}
         </div>
     );
