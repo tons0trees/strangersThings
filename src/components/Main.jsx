@@ -12,7 +12,6 @@ import { getPostList } from "../api"
 const Main = () => {
     const [postList, setPostList] = useState([])
     const [userToken, setUserToken] = useState(null)
-    const [readyToPost, setReadyToPost] = useState(false)
 
     useEffect(() => {
         const localToken = localStorage.getItem("token")
@@ -27,14 +26,13 @@ const Main = () => {
         callGetPostList()
     }, [userToken])
 
+    
     return (
         <BrowserRouter>
             <div id="main">
                 <Navbar
                     userToken={userToken}
                     setUserToken={setUserToken}
-                    setReadyToPost={setReadyToPost}
-                    readyToPost={readyToPost}
                 />
                 <Routes>
                     <Route
@@ -46,13 +44,20 @@ const Main = () => {
                         }
                     />
                     <Route
-                        exact
-                        path="/"
+                        exact path="/"
                         element={
                             <PostsDisplay
                                 postList={postList}
                                 userToken={userToken}
                                 setPostList={setPostList}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/post"
+                        element={
+                            <PostForm
+                                userToken={userToken}
                             />
                         }
                     />

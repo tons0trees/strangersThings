@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const PostForm = ({userToken, setReadyToPost}) => {
+const PostForm = ({userToken}) => {
+    const navigate = useNavigate();
 
     async function submitNewPost (event) {
         event.preventDefault()
@@ -23,7 +25,7 @@ const PostForm = ({userToken, setReadyToPost}) => {
         try {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts', newPost)
             const result = await response.json()
-            setReadyToPost(false)
+            navigate('/')
         } catch (error) {
             console.log('an error happened', error)
             
