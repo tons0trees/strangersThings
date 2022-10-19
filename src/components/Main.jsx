@@ -1,52 +1,70 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, PostsDisplay, RegistrationForm, PostForm } from "./";
-import { getPostList } from "../api";
+import React, { useState, useEffect } from "react"
+import {
+    BrowserRouter,
+    RouterProvider,
+    Route,
+    Link,
+    Routes,
+} from "react-router-dom"
+import { Navbar, PostsDisplay, RegistrationForm, PostForm } from "./"
+import { getPostList } from "../api"
 
 const Main = () => {
-    const [postList, setPostList] = useState([]);
-    const [readyToRegister, setReadyToRegister] = useState(false);
-    const [userToken, setUserToken] = useState(null);
-    const [readyToPost, setReadyToPost] = useState(false);
+    const [postList, setPostList] = useState([])
+    const [userToken, setUserToken] = useState(null)
 
     useEffect(() => {
-        const localToken = localStorage.getItem("token");
-        setUserToken(localToken);
-    }, []);
+        const localToken = localStorage.getItem("token")
+        setUserToken(localToken)
+    }, [])
 
     useEffect(() => {
         async function callGetPostList() {
-            const fetchedList = await getPostList(userToken);
-            setPostList(fetchedList);
+            const fetchedList = await getPostList(userToken)
+            setPostList(fetchedList)
         }
-        callGetPostList();
-    },[userToken])
+        callGetPostList()
+    }, [userToken])
 
+    
     return (
-        <div id="main">
-            <Navbar
-                userToken={userToken}
-                setUserToken={setUserToken}
-                readyToRegister={readyToRegister}
-                setReadyToRegister={setReadyToRegister}
-                setReadyToPost={setReadyToPost}
-                readyToPost={readyToPost}
-            />
-            {readyToRegister ? (
-                <RegistrationForm
-                    setUserToken={setUserToken}
-                    setReadyToRegister={setReadyToRegister}
-                />
-            ) : null}
-            {readyToPost ? (
-                <PostForm
+        <BrowserRouter>
+            <div id="main">
+                <Navbar
                     userToken={userToken}
-                    setReadyToPost={setReadyToPost}
+                    setUserToken={setUserToken}
                 />
-            ) : (
-                <PostsDisplay postList={postList} userToken={userToken} setPostList={setPostList}/>
-            )}
-        </div>
-    );
-};
+                <Routes>
+                    <Route
+                        path="/register"
+                        element={
+                            <RegistrationForm
+                                setUserToken={setUserToken}
+                            />
+                        }
+                    />
+                    <Route
+                        exact path="/"
+                        element={
+                            <PostsDisplay
+                                postList={postList}
+                                userToken={userToken}
+                                setPostList={setPostList}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/post"
+                        element={
+                            <PostForm
+                                userToken={userToken}
+                            />
+                        }
+                    />
+                </Routes>
+            </div>
+        </BrowserRouter>
+    )
+}
 
-export default Main;
+export default Main
