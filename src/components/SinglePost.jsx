@@ -39,14 +39,15 @@ const SinglePost = ({post, userToken, setPostList}) => {
             <p>{post.price}</p>
             <p>{post.description}</p>
             <p>{post.author.username}</p>
-            {post.isAuthor
-            ? <>
-                <button onClick={deletePost}>Delete</button>
-                <button>Edit</button>
-                {post.messages.length > 0 ? <MessagesPanel messageList={post.messages}/> : null}
-            </>
-            :null}
-            <MessageForm post={post} userToken={userToken} setPostList={setPostList}/>
+            {userToken
+            ? <>{post.isAuthor 
+                ? <>
+                    <button onClick={deletePost}>Delete</button>
+                    <button>Edit</button>
+                    {post.messages.length > 0 ? <MessagesPanel messageList={post.messages}/> : null}
+                </>
+                :<MessageForm post={post} userToken={userToken} setPostList={setPostList}/>}</>
+            : null}
         </div>
     )
 }

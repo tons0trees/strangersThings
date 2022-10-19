@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { getPostList } from "../api";
 
 const MessageForm = ({post, userToken, setPostList}) => {
+    const [message, setMessage] = useState('')
+
     async function submitMessage(event) {
         event.preventDefault()
         const url = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts/' + post._id + '/messages'
@@ -13,14 +15,14 @@ const MessageForm = ({post, userToken, setPostList}) => {
             },
             body: JSON.stringify({
                 message: {
-                    content: event.target[0].value
+                    content: message
                 }
             })
         }
         try {
             const response = await fetch(url,messageToken)
             const result = await response.json()
-            event.target[0].value = '' //IS THIS VANILLA DOM MANIPULATION LEGAL?
+            setMessage('')
             const newPostList = await getPostList(userToken)
             setPostList(newPostList)
         } catch (error) {
@@ -31,7 +33,7 @@ const MessageForm = ({post, userToken, setPostList}) => {
 
     return (
         <form className="message-form" onSubmit={submitMessage}> 
-            <input type='text'/>
+            <input type='text' value={message} onChange={elem => {setMessage(elem.target.value)}}/>
             <input type='submit' value='Send'/>
         </form>
     )
