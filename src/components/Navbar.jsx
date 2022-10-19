@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { logIn } from '../api';
 
 const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, setReadyToPost, readyToPost}) => {
 
@@ -22,6 +23,12 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, s
         } catch (error) {
             console.log('there is an error', error)
         }
+    }
+
+    async function handleSubmit(event) {
+        const username = event.target[0].value
+        const password = event.target[1].value
+        const token = logIn
     }
 
     return (

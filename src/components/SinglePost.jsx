@@ -1,5 +1,6 @@
 import React from "react";
 import {getPostList} from '../api'
+import MessageForm from "./MessageForm";
 
 const SinglePost = ({post, userToken, setPostList}) => {
 
@@ -39,10 +40,10 @@ const SinglePost = ({post, userToken, setPostList}) => {
             <p>{post.author.username}</p>
             {post.isAuthor
             ? <>
-            <button onClick={deletePost}>Delete</button>
-            <button>Edit</button>
+                <button onClick={deletePost}>Delete</button>
+                <button>Edit</button>
             </>
-            :null}
+            :<MessageForm />}
         </div>
     )
 }
