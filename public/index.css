@@ -21,7 +21,6 @@ body {
 }
 
 
-
 .nav-button {
   padding: 2px;
   margin: 5px;
@@ -41,6 +40,10 @@ input {
   margin: 10px;
   padding: 10px;
   width: 50%;
+}
+
+.author {
+  background-color: lightpink;
 }
 
 /* testing */

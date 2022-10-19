@@ -1,38 +1,52 @@
-import React, {useState, useEffect} from "react"
-import {Navbar, PostsDisplay, RegistrationForm, PostForm} from "./"
+import React, { useState, useEffect } from "react";
+import { Navbar, PostsDisplay, RegistrationForm, PostForm } from "./";
+import { getPostList } from "../api";
 
 const Main = () => {
-const [postList, setPostList] = useState([])
-const [readyToRegister, setReadyToRegister] = useState(false)
-const [userToken, setUserToken] = useState(null)
-const [readyToPost, setReadyToPost] = useState(false)
+    const [postList, setPostList] = useState([]);
+    const [readyToRegister, setReadyToRegister] = useState(false);
+    const [userToken, setUserToken] = useState(null);
+    const [readyToPost, setReadyToPost] = useState(false);
 
-async function getPostList() {
-    try {
-        const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts')
-        const posts = await response.json()
-        console.log("I ran get post")
-        setPostList(posts.data.posts)
-        
-    } catch (error) {
-                       
-    }
-}
+    useEffect(() => {
+        const localToken = localStorage.getItem("token");
+        setUserToken(localToken);
+    }, []);
 
-useEffect (() => {
-    getPostList()
-    const checkForToken = localStorage.getItem('token')
-    setUserToken(checkForToken)
-}, [])
+    useEffect(() => {
+        async function callGetPostList() {
+            const fetchedList = await getPostList(userToken);
+            setPostList(fetchedList);
+        }
+        callGetPostList();
+    },[userToken])
 
     return (
         <div id="main">
-            <Navbar userToken={userToken} setUserToken={setUserToken} readyToRegister={readyToRegister} setReadyToRegister={setReadyToRegister} setReadyToPost={setReadyToPost} readyToPost={readyToPost}/>
-            {readyToRegister ? <RegistrationForm setUserToken={setUserToken} setReadyToRegister={setReadyToRegister}/> : null}
-            {readyToPost ? <PostForm userToken={userToken} setReadyToPost={setReadyToPost}/> :
-            <PostsDisplay postList={postList} />}
+            <Navbar
+                userToken={userToken}
+                setUserToken={setUserToken}
+                readyToRegister={readyToRegister}
+                setReadyToRegister={setReadyToRegister}
+                setReadyToPost={setReadyToPost}
+                readyToPost={readyToPost}
+            />
+            {readyToRegister ? (
+                <RegistrationForm
+                    setUserToken={setUserToken}
+                    setReadyToRegister={setReadyToRegister}
+                />
+            ) : null}
+            {readyToPost ? (
+                <PostForm
+                    userToken={userToken}
+                    setReadyToPost={setReadyToPost}
+                />
+            ) : (
+                <PostsDisplay postList={postList} />
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Main;
