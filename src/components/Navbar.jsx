@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, setReadyToPost}) => {
+const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, setReadyToPost, readyToPost}) => {
 
 
     async function logIn(event) {
@@ -29,7 +29,7 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, s
             <h2>Stranger's Things</h2>
             {userToken
             ? <div>
-                <button onClick={() => {setReadyToPost(true)}} >Make New Post
+                <button onClick={() => {setReadyToPost(!readyToPost)}} >Make New Post
                 </button>
                 <button onClick={() => {
                 setUserToken(null);

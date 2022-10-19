@@ -27,7 +27,7 @@ useEffect (() => {
 
     return (
         <div id="main">
-            <Navbar userToken={userToken} setUserToken={setUserToken} readyToRegister={readyToRegister} setReadyToRegister={setReadyToRegister} setReadyToPost={setReadyToPost}/>
+            <Navbar userToken={userToken} setUserToken={setUserToken} readyToRegister={readyToRegister} setReadyToRegister={setReadyToRegister} setReadyToPost={setReadyToPost} readyToPost={readyToPost}/>
             {readyToRegister ? <RegistrationForm setUserToken={setUserToken} setReadyToRegister={setReadyToRegister}/> : null}
             {readyToPost ? <PostForm userToken={userToken} setReadyToPost={setReadyToPost}/> :
             <PostsDisplay postList={postList} />}
