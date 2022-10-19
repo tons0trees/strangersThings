@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { logIn } from '../api';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, setReadyToPost, readyToPost}) => {
+const Navbar = ({userToken, setUserToken, setReadyToPost, readyToPost}) => {
 
 
     async function logIn(event) {
@@ -56,10 +56,8 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, s
                 </label>
                 <input type="submit" value="Log In"/>
             </form>
-            <NavLink to="/register">
-                Sign Up
-            </NavLink>
-            {/* <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button> */}
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/register">Sign Up</NavLink>
             </>
             }
         </div>

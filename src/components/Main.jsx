@@ -11,7 +11,6 @@ import { getPostList } from "../api"
 
 const Main = () => {
     const [postList, setPostList] = useState([])
-    const [readyToRegister, setReadyToRegister] = useState(false)
     const [userToken, setUserToken] = useState(null)
     const [readyToPost, setReadyToPost] = useState(false)
 
@@ -34,8 +33,6 @@ const Main = () => {
                 <Navbar
                     userToken={userToken}
                     setUserToken={setUserToken}
-                    readyToRegister={readyToRegister}
-                    setReadyToRegister={setReadyToRegister}
                     setReadyToPost={setReadyToPost}
                     readyToPost={readyToPost}
                 />
@@ -45,7 +42,6 @@ const Main = () => {
                         element={
                             <RegistrationForm
                                 setUserToken={setUserToken}
-                                setReadyToRegister={setReadyToRegister}
                             />
                         }
                     />
