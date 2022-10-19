@@ -41,6 +41,7 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, s
                 <button onClick={() => {
                 setUserToken(null);
                 localStorage.removeItem('token');
+                setReadyToPost(false)
             }}>Log Out</button>
             </div>
             :<><form id="login-form" onSubmit={logIn}>

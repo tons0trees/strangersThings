@@ -1,5 +1,8 @@
 export {default as Main} from './Main'
 export {default as Navbar} from './Navbar'
 export {default as PostsDisplay} from './PostsDisplay'
+export {default as SinglePost} from './SinglePost'
 export {default as RegistrationForm} from './RegistrationForm'
 export {default as PostForm} from './PostForm'
+export {default as MessageForm} from './MessageForm'
+export {default as MessagesPanel} from './MessagesPanel'

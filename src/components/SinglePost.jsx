@@ -1,6 +1,7 @@
 import React from "react";
 import {getPostList} from '../api'
-import MessageForm from "./MessageForm";
+import {MessageForm, MessagesPanel} from "./";
+
 
 const SinglePost = ({post, userToken, setPostList}) => {
 
@@ -42,8 +43,10 @@ const SinglePost = ({post, userToken, setPostList}) => {
             ? <>
                 <button onClick={deletePost}>Delete</button>
                 <button>Edit</button>
+                {post.messages.length > 0 ? <MessagesPanel messageList={post.messages}/> : null}
             </>
-            :<MessageForm />}
+            :null}
+            <MessageForm post={post} userToken={userToken} setPostList={setPostList}/>
         </div>
     )
 }
