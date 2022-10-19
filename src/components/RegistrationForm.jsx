@@ -1,4 +1,5 @@
 import React from "react"
+import { useNavigate } from "react-router-dom";
 
 
 const RegistrationForm = ({setUserToken, setReadyToRegister}) => {
@@ -17,7 +18,8 @@ const RegistrationForm = ({setUserToken, setReadyToRegister}) => {
             setUserToken(token)
             localStorage.removeItem('token')
             localStorage.setItem('token', token)
-            setReadyToRegister(false)
+            const navigate = useNavigate()
+            navigate("/")
         } catch (error) {
             console.log(error)           
         }

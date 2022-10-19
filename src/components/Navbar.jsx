@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { logIn } from '../api';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, setReadyToPost, readyToPost}) => {
 
@@ -55,7 +56,11 @@ const Navbar = ({userToken, setUserToken, setReadyToRegister, readyToRegister, s
                 </label>
                 <input type="submit" value="Log In"/>
             </form>
-            <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button></>
+            <NavLink to="/register">
+                Sign Up
+            </NavLink>
+            {/* <button onClick={() => setReadyToRegister(!readyToRegister)}>Sign Up</button> */}
+            </>
             }
         </div>
     );
