@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { logIn } from "../api";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = ({ userToken, setUserToken }) => {
+    const navigate = useNavigate();
+
     async function logIn(event) {
         event.preventDefault();
         try {
@@ -35,12 +37,15 @@ const Navbar = ({ userToken, setUserToken }) => {
             <h2>Stranger's Things</h2>
             {userToken ? (
                 <div>
-                    <NavLink className='nav-link' to="/post"><button>Make New Post</button></NavLink>
+
+                    <NavLink className="NavLink" to="/post">Make New Post</NavLink>
+                    <NavLink className="NavLink" to="/dashboard">User Dashboard</NavLink>
+
                     <button
                         onClick={() => {
                             setUserToken(null);
                             localStorage.removeItem("token");
-                            setReadyToPost(false);
+                            navigate('/')
                         }}
                     >
                         Log Out
@@ -59,10 +64,12 @@ const Navbar = ({ userToken, setUserToken }) => {
                         </label>
                         <input type="submit" value="Log In" />
                     </form>
+
                     <NavLink className='nav-link' to="/register"><button>Sign Up</button></NavLink>
                 </>
             )}
             <NavLink className='nav-link' to="/"><button>Home</button></NavLink>
+
         </div>
     );
 };
