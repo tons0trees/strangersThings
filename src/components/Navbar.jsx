@@ -38,8 +38,8 @@ const Navbar = ({ userToken, setUserToken }) => {
             {userToken ? (
                 <div>
 
-                    <NavLink className="NavLink" to="/post">Make New Post</NavLink>
-                    <NavLink className="NavLink" to="/dashboard">User Dashboard</NavLink>
+                    <NavLink className="nav-link" to="/post"><button>Make New Post</button></NavLink>
+                    <NavLink className="nav-link" to="/dashboard"><button>User Dashboard</button></NavLink>
 
                     <button
                         onClick={() => {

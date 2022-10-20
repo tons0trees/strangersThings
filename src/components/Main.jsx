@@ -64,7 +64,7 @@ const Main = () => {
                     <Route 
                         path="/dashboard"
                         element={
-                            <UserDashboard />}
+                            <UserDashboard userToken={userToken}/>}
                             />
                 </Routes>
             </div>
