@@ -6,7 +6,7 @@ import {
     Link,
     Routes,
 } from "react-router-dom"
-import { Navbar, PostsDisplay, RegistrationForm, PostForm } from "./"
+import { Navbar, PostsDisplay, RegistrationForm, PostForm, UserDashboard } from "./"
 import { getPostList } from "../api"
 
 const Main = () => {
@@ -61,6 +61,11 @@ const Main = () => {
                             />
                         }
                     />
+                    <Route 
+                        path="/dashboard"
+                        element={
+                            <UserDashboard />}
+                            />
                 </Routes>
             </div>
         </BrowserRouter>

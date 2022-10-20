@@ -37,7 +37,7 @@ const PostForm = ({userToken}) => {
 
 
     return (
-        <form onSubmit={submitNewPost}>
+        <form className="PostForm" onSubmit={submitNewPost}>
                 <label htmlFor="title">Title
                     <input type="text" name="title"/>
                 </label>

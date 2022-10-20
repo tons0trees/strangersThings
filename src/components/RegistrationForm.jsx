@@ -33,7 +33,7 @@ const RegistrationForm = ({ setUserToken }) => {
     }
 
     return (
-        <div className="registration-form" onSubmit={registerNewUser}>
+        <div className="RegistrationForm" onSubmit={registerNewUser}>
             <form>
                 <label htmlFor="username">
                     Username:
