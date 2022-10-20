@@ -5,15 +5,14 @@ const UserMessages = ({messages}) => {
     return (
         <div>
             <h1>Kaylan's Messages</h1>
-            {messages.map(message => {
+            {messages.map((message,index) => {
                 return (
-                <div className="individual-message">
+                <div key={`message_${index}`} className="individual-message">
                    <p><b>From: </b>{message.fromUser.username}</p> 
                    <p><b>{message.post.title}</b></p>
                    <p>{message.content}</p>
                 </div>)
             })}
-
         </div>
     )
 }

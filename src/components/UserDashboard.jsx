@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {UserPosts, UserMessages} from './'
 
 const UserDashboard = ({userToken}) => {
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({messages:[], posts:[]})
 
     async function getUserData() {
         const userDataToken = {
@@ -36,7 +36,7 @@ const UserDashboard = ({userToken}) => {
         <div className='user-dashboard'>
             <h1>{`This is ${userData.username} Dashboard`}</h1>
             <UserPosts posts={userData.posts}/>
-            <UserMessages messages={userData.messages}/>
+            <UserMessages messages={userData.messages} userToken={userToken}/>
         </div>
     )
 }
