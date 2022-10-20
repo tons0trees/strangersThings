@@ -26,12 +26,11 @@ const UserDashboard = ({userToken}) => {
         async function callGetUserData() {
             const newUserData = await getUserData()
             setUserData(newUserData)
-            testObj = newUserData
         }
         if (userToken) {
             callGetUserData()
         }
-    },[useEffect])
+    },[userToken])
 
     return (
         <div className='user-dashboard'>
