@@ -35,7 +35,7 @@ const Navbar = ({ userToken, setUserToken }) => {
             <h2>Stranger's Things</h2>
             {userToken ? (
                 <div>
-                    <NavLink to="/post">Make New Post</NavLink>
+                    <NavLink className='nav-link' to="/post"><button>Make New Post</button></NavLink>
                     <button
                         onClick={() => {
                             setUserToken(null);
@@ -59,10 +59,10 @@ const Navbar = ({ userToken, setUserToken }) => {
                         </label>
                         <input type="submit" value="Log In" />
                     </form>
-                    <NavLink to="/register">Sign Up</NavLink>
+                    <NavLink className='nav-link' to="/register"><button>Sign Up</button></NavLink>
                 </>
             )}
-            <NavLink to="/">Home</NavLink>
+            <NavLink className='nav-link' to="/"><button>Home</button></NavLink>
         </div>
     );
 };
