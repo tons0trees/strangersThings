@@ -1,10 +1,9 @@
 import React from "react";
 
-const UserMessages = ({messages}) => {
-    console.log(messages)
+const UserMessages = ({messages, username}) => {
     return (
         <div>
-            <h1>Kaylan's Messages</h1>
+            <h1>Messages</h1>
             {messages.map((message,index) => {
                 return (
                 <div key={`message_${index}`} className="individual-message">

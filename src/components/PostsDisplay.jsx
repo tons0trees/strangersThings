@@ -4,7 +4,7 @@ import {SinglePost} from './'
 
 const PostsDisplay = ({postList, userToken, setPostList}) => {
     return (
-        <div>
+        <div className="post-display">
             {postList.map(elem => {
                 return <SinglePost key={elem._id} post={elem} userToken={userToken} setPostList={setPostList}/>
             })}
