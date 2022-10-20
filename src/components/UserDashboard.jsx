@@ -35,8 +35,10 @@ const UserDashboard = ({userToken, setPostList}) => {
     return (
         <div className='user-dashboard'>
             <h1>{`This is ${userData.username}'s Dashboard`}</h1>
-            <UserPosts posts={userData.posts} userToken={userToken} setPostList={setPostList}/>
-            <UserMessages username={userData.username} messages={userData.messages} userToken={userToken}/>
+            <div className='dashboard-content'>
+                <UserPosts posts={userData.posts} userToken={userToken} setPostList={setPostList}/>
+                <UserMessages username={userData.username} messages={userData.messages} userToken={userToken}/>
+            </div>
         </div>
     )
 }

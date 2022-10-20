@@ -10,7 +10,7 @@ const activePosts = posts.filter(element => element.active)
             <h1>Posts</h1>
             {activePosts.map((post, index) => {
                 post.isAuthor = true
-                post.messages = []
+                // post.messages = []
                 return (
                     <SinglePost key={`post${index}`} post={post} setPostList={setPostList} userToken={userToken}/>
                 )

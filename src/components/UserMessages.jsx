@@ -7,9 +7,9 @@ const UserMessages = ({messages, username}) => {
             {messages.map((message,index) => {
                 return (
                 <div key={`message_${index}`} className="individual-message">
+                   <p><b>Post: </b>{message.post.title}</p>
                    <p><b>From: </b>{message.fromUser.username}</p> 
-                   <p><b>{message.post.title}</b></p>
-                   <p>{message.content}</p>
+                   <p><b>Message: </b>{message.content}</p>
                 </div>)
             })}
         </div>
