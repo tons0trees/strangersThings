@@ -6,12 +6,13 @@ import {
     Link,
     Routes,
 } from "react-router-dom"
-import { Navbar, PostsDisplay, RegistrationForm, PostForm, UserDashboard } from "./"
+import { Navbar, PostsDisplay, RegistrationForm, PostForm, UserDashboard, SearchBar } from "./"
 import { getPostList } from "../api"
 
 const Main = () => {
     const [postList, setPostList] = useState([])
     const [userToken, setUserToken] = useState(null)
+
 
     useEffect(() => {
         const localToken = localStorage.getItem("token")
@@ -25,6 +26,8 @@ const Main = () => {
         }
         callGetPostList()
     }, [userToken])
+
+
 
     
     return (
