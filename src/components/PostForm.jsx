@@ -38,19 +38,19 @@ const PostForm = ({userToken}) => {
 
     return (
         <form className="PostForm" onSubmit={submitNewPost}>
-                <label htmlFor="title">Title
+                <label htmlFor="title"><b>Title: </b><br/>
                     <input type="text" name="title"/>
                 </label>
-                <label htmlFor="description">Description
-                    <input type="text" name="description"/>
+                <label htmlFor="description" ><b>Description: </b> <br/>
+                <textarea rows="4" cols="50"></textarea>
                 </label>
-                <label htmlFor="price">Price
+                <label htmlFor="price"><b>Price: </b> <br/> 
                     <input type="text" name="price"/>
                 </label>
-                <label htmlFor="location">Location
+                <label htmlFor="location"><b>Location: </b> <br/>
                     <input type="text" name="location"/>
                 </label>
-                <label htmlFor="willDeliver">Will Deliver
+                <label htmlFor="willDeliver"><b>Will Deliver: </b> <br/>
                     <input type="checkbox" name="willDeliver" value={true}/>
                 </label>
                 <input type="submit" value="Submit Post"/>

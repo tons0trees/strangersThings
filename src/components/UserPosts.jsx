@@ -6,8 +6,8 @@ const activePosts = posts.filter(element => element.active)
 
     return (
 
-        <div>
-            <h1>Posts</h1>
+        <div className="dash-posts">
+            <h1 id="dashboard-posts">Posts</h1>
             {activePosts.map((post, index) => {
                 post.isAuthor = true
                 // post.messages = []

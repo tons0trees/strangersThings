@@ -33,7 +33,7 @@ const MessageForm = ({post, userToken, setPostList}) => {
 
     return (
         <form className="MessageForm" onSubmit={submitMessage}> 
-            <input type='text' value={message} onChange={elem => {setMessage(elem.target.value)}}/>
+            <input placeholder="Message Seller" type='text' value={message} onChange={elem => {setMessage(elem.target.value)}}/>
             <input type='submit' value='Send'/>
         </form>
     )
