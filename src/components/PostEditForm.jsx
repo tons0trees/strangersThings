@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { getPostList } from "../api";
 
-const PostEditForm = ({userToken,postList}) => {
+const PostEditForm = ({userToken,postList, setPostList}) => {
+    const navigate = useNavigate();
     const {postId} = useParams()
     const oldPost = postList.filter(elem => elem._id == postId)[0]
 
@@ -10,7 +12,7 @@ const PostEditForm = ({userToken,postList}) => {
     function handleChange(event) {
         event.preventDefault()
         const changedKey = event.target.name
-        const changedValue = (changedKey==='willDeliver' ? event.target.checked : event.target.value)
+        const changedValue = event.target.value
         const changedPost = {...currentPost, [changedKey]: changedValue}
         setCurrentPost(changedPost)
     }
@@ -25,27 +27,28 @@ const PostEditForm = ({userToken,postList}) => {
             },
             body: JSON.stringify({
                 post: {
-                    title: event.target[0].value,
-                    description: event.target[1].value,
-                    price: event.target[2].value,
-                    location: event.target[3].value,
-                    willDeliver: event.target[4].checked,
+                    title: currentPost.title,
+                    description: currentPost.description,
+                    price: currentPost.price,
+                    location: currentPost.location,
+                    willDeliver: currentPost.willDeliver,
                 },
             }),
         };
         try {
-            const response = await fetch(
-                "https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts/"+post._id,
-                editToken);
+            const response = await fetch("https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts/"+postId, editToken);
             const result = await response.json();
-            navigate("/");
+            console.log(result)
+            const newPostList = await getPostList(userToken)
+            setPostList(newPostList)
+            navigate("/"); //I wish this was navigate back instead of navigate home
         } catch (error) {
             console.log("an error happened", error);
         }
     }
 
     return (
-        <form className="PostEditForm" onChange={handleChange}>
+        <form className="PostEditForm" onChange={handleChange} onSubmit={submitEditPost}>
             <label htmlFor="title">
                 Title
                 <input type="text" name="title" defaultValue={currentPost.title}/>
@@ -64,7 +67,11 @@ const PostEditForm = ({userToken,postList}) => {
             </label>
             <label htmlFor="willDeliver">
                 Will Deliver
-                <input type="checkbox" name="willDeliver" checked={currentPost.willDeliver} />
+                {/* <input type="checkbox" name="willDeliver" checked={currentPost.willDeliver} /> */}
+                <select name="willDeliver" defaultValue={currentPost.willDeliver}>
+                        <option value={false}>No</option>
+                        <option value={true}>Yes</option>
+                </select>
             </label>
             <input type="submit" value="Submit Post" />
         </form>

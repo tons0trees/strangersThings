@@ -59,6 +59,7 @@ const Main = () => {
                         element={
                             <PostCreateForm
                                 userToken={userToken}
+                                setPostList={setPostList}
                             />
                         }
                     />
@@ -68,6 +69,7 @@ const Main = () => {
                             <PostEditForm
                                 userToken={userToken}
                                 postList={postList}
+                                setPostList={setPostList}
                             />
                         }
                     />

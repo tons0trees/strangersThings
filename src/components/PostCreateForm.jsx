@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { getPostList } from '../api';
 
-const PostCreateForm = ({userToken}) => {
+const PostCreateForm = ({userToken, setPostList}) => {
     const navigate = useNavigate();
 
     async function submitNewPost (event) {
@@ -18,19 +19,21 @@ const PostCreateForm = ({userToken}) => {
                     description: event.target[1].value,
                     price: event.target[2].value,
                     location: event.target[3].value,
-                    willDeliver: event.target[4].checked
+                    willDeliver: event.target[4].value
                 }
             })
-      }
+        }
+
         try {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts', newPost)
             const result = await response.json()
+            const newPostList = await getPostList(userToken)
+            setPostList(newPostList)
             navigate('/')
         } catch (error) {
             console.log('an error happened', error)
             
         }
-        // handle what fetch comes back with
     }
 
 
@@ -51,7 +54,10 @@ const PostCreateForm = ({userToken}) => {
                     <input type="text" name="location"/>
                 </label>
                 <label htmlFor="willDeliver">Will Deliver
-                    <input type="checkbox" name="willDeliver" value={true}/>
+                    <select name="willDeliver">
+                        <option value={false}>No</option>
+                        <option value={true}>Yes</option>
+                    </select>
                 </label>
                 <input type="submit" value="Submit Post"/>
         </form>
