@@ -27,7 +27,7 @@ const PostCreateForm = ({userToken, setPostList}) => {
         try {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts', newPost)
             const result = await response.json()
-            
+
             const newPostList = await getPostList(userToken)
             setPostList(newPostList)
             navigate('/')
@@ -42,19 +42,19 @@ const PostCreateForm = ({userToken, setPostList}) => {
 
     return (
         <form className="PostForm" onSubmit={submitNewPost}>
-                <label htmlFor="title">Title
+                <label htmlFor="title">Title <br/>
                     <input type="text" name="title"/>
                 </label>
-                <label htmlFor="description">Description
-                    <input type="text" name="description" size={70} />
+                <label htmlFor="description">Description<br/>
+                    <textarea rows='4' cols='50' name="description" />
                 </label>
-                <label htmlFor="price">Price
+                <label htmlFor="price">Price<br/>
                     <input type="text" name="price"/>
                 </label>
-                <label htmlFor="location">Location
+                <label htmlFor="location">Location<br/>
                     <input type="text" name="location"/>
                 </label>
-                <label htmlFor="willDeliver">Will Deliver
+                <label htmlFor="willDeliver">Will Deliver<br/>
                     <select name="willDeliver">
                         <option value={false}>No</option>
                         <option value={true}>Yes</option>

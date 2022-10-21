@@ -70,8 +70,11 @@ width: 40%;
 
  .PostForm input {
 background-color: ghostwhite;
+}
 
-
+.PostEditForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .individual-message {

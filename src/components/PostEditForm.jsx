@@ -49,24 +49,25 @@ const PostEditForm = ({userToken,postList, setPostList}) => {
 
     return (
         <form className="PostEditForm" onChange={handleChange} onSubmit={submitEditPost}>
+            
             <label htmlFor="title">
-                Title
+                Title<br/>
                 <input type="text" name="title" defaultValue={currentPost.title}/>
             </label>
             <label htmlFor="description">
-                Description
-                <input type="text" name="description" defaultValue={currentPost.description}/>
+                Description<br/>
+                <textarea rows='4' cols='50' name="description" defaultValue={currentPost.description}/>
             </label>
             <label htmlFor="price">
-                Price
+                Price<br/>
                 <input type="text" name="price" defaultValue={currentPost.price}/>
             </label>
             <label htmlFor="location">
-                Location
+                Location<br/>
                 <input type="text" name="location" defaultValue={currentPost.location}/>
             </label>
             <label htmlFor="willDeliver">
-                Will Deliver
+                Will Deliver<br/>
                 {/* <input type="checkbox" name="willDeliver" checked={currentPost.willDeliver} /> */}
                 <select name="willDeliver" defaultValue={currentPost.willDeliver}>
                         <option value={false}>No</option>
