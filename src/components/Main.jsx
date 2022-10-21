@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react"
 import {
     BrowserRouter,
-    RouterProvider,
     Route,
-    Link,
     Routes,
 } from "react-router-dom"
-import { Navbar, PostsDisplay, RegistrationForm, PostCreateForm, UserDashboard } from "./"
+import { Navbar, PostsDisplay, RegistrationForm, PostEditForm, PostCreateForm, UserDashboard } from "./"
 import { getPostList } from "../api"
-import PostEditForm from "./PostEditForm"
 
 const Main = () => {
     const [postList, setPostList] = useState([])

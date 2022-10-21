@@ -27,6 +27,7 @@ const PostCreateForm = ({userToken, setPostList}) => {
         try {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts', newPost)
             const result = await response.json()
+            
             const newPostList = await getPostList(userToken)
             setPostList(newPostList)
             navigate('/')

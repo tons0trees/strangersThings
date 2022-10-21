@@ -2,14 +2,9 @@ import React from "react";
 import {getPostList} from '../api'
 import {MessageForm, MessagesPanel} from "./";
 import { NavLink } from "react-router-dom";
-import PostEditForm from "./PostEditForm";
 
-
-const SinglePost = ({post, userToken, setPostList}) => {
-
+const SinglePost = ({post, userToken, setPostList, filteredList, setFilteredList}) => {
     async function deletePost () {
-
-
         try {
          const deleteToken = {
             method: "DELETE",
@@ -17,14 +12,17 @@ const SinglePost = ({post, userToken, setPostList}) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${userToken}`
             }
-
          }  
          const url = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT/posts/' + post._id
-         console.log(url)
-
          const response = await fetch(url, deleteToken)
          const result = await response.json()
          console.log(result)
+
+         if (filteredList.length) {
+            const newList = filteredList.filter(elem => elem._id != post._id)
+            setFilteredList(newList)
+         }
+
          const newList = await getPostList(userToken)
          setPostList(newList)  
         } catch (error) {
