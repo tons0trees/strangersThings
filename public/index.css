@@ -72,10 +72,6 @@ width: 40%;
 background-color: ghostwhite;
 }
 
-.PostEditForm {
-  display: flex;
-  flex-direction: column;
-}
 
 .individual-message {
 border: 1px solid black;

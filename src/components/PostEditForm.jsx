@@ -48,7 +48,7 @@ const PostEditForm = ({userToken,postList, setPostList}) => {
     }
 
     return (
-        <form className="PostEditForm" onChange={handleChange} onSubmit={submitEditPost}>
+        <form className="PostForm" onChange={handleChange} onSubmit={submitEditPost}>
             
             <label htmlFor="title">
                 Title<br/>
