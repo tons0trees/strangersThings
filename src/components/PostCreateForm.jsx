@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const PostForm = ({userToken}) => {
+const PostCreateForm = ({userToken}) => {
     const navigate = useNavigate();
 
     async function submitNewPost (event) {
@@ -42,7 +42,7 @@ const PostForm = ({userToken}) => {
                     <input type="text" name="title"/>
                 </label>
                 <label htmlFor="description">Description
-                    <input type="text" name="description"/>
+                    <input type="text" name="description" size={70} />
                 </label>
                 <label htmlFor="price">Price
                     <input type="text" name="price"/>
@@ -60,7 +60,7 @@ const PostForm = ({userToken}) => {
 
 
 
-export default PostForm
+export default PostCreateForm
 
 
 
