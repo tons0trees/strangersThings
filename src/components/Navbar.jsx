@@ -60,7 +60,7 @@ const Navbar = ({ userToken, setUserToken }) => {
                         </label>
                         <label htmlFor="password-input">
                             Password:
-                            <input type="text" name="password-input" />
+                            <input type="password" name="password-input" />
                         </label>
                         <input type="submit" value="Log In" />
                     </form>

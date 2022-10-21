@@ -6,8 +6,9 @@ import {
     Link,
     Routes,
 } from "react-router-dom"
-import { Navbar, PostsDisplay, RegistrationForm, PostForm, UserDashboard } from "./"
+import { Navbar, PostsDisplay, RegistrationForm, PostCreateForm, UserDashboard } from "./"
 import { getPostList } from "../api"
+import PostEditForm from "./PostEditForm"
 
 const Main = () => {
     const [postList, setPostList] = useState([])
@@ -36,14 +37,6 @@ const Main = () => {
                 />
                 <Routes>
                     <Route
-                        path="/register"
-                        element={
-                            <RegistrationForm
-                                setUserToken={setUserToken}
-                            />
-                        }
-                    />
-                    <Route
                         exact path="/"
                         element={
                             <PostsDisplay
@@ -54,10 +47,29 @@ const Main = () => {
                         }
                     />
                     <Route
+                        path="/register"
+                        element={
+                            <RegistrationForm
+                                setUserToken={setUserToken}
+                            />
+                        }
+                    />
+                    <Route
                         path="/post"
                         element={
-                            <PostForm
+                            <PostCreateForm
                                 userToken={userToken}
+                                setPostList={setPostList}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/edit/:postId"
+                        element={
+                            <PostEditForm
+                                userToken={userToken}
+                                postList={postList}
+                                setPostList={setPostList}
                             />
                         }
                     />

@@ -22,7 +22,6 @@ const UserDashboard = ({userToken, setPostList}) => {
     }
 
     useEffect(() => {
-        console.log("i ran the useEffect")
         async function callGetUserData() {
             const newUserData = await getUserData()
             setUserData(newUserData)

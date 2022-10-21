@@ -1,6 +1,8 @@
 import React from "react";
 import {getPostList} from '../api'
 import {MessageForm, MessagesPanel} from "./";
+import { NavLink } from "react-router-dom";
+import PostEditForm from "./PostEditForm";
 
 
 const SinglePost = ({post, userToken, setPostList}) => {
@@ -44,7 +46,7 @@ const SinglePost = ({post, userToken, setPostList}) => {
             ? <>{post.isAuthor 
                 ? <>
                     <button onClick={deletePost}>Delete</button>
-                    <button>Edit</button>
+                    <NavLink to={`/edit/${post._id}`}><button>Edit</button></NavLink>
                     {post.messages.length > 0 ? <MessagesPanel messageList={post.messages}/> : null}
                 </>
                 :<MessageForm post={post} userToken={userToken} setPostList={setPostList}/>}</>
