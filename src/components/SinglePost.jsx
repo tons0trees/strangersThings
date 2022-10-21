@@ -35,10 +35,11 @@ const SinglePost = ({post, userToken, setPostList}) => {
     return (
         <div className={post.isAuthor ? "single-post author" : "single-post"}>
             <h3>{post.title}</h3>
-            <p>{post.location}</p>
-            <p>{post.price}</p>
+            <p><b>Seller: </b>{post.author.username}</p>
+            <p><b>Location: </b>{post.location}</p>
+            <p><b>Price: </b>{post.price}</p>
             <p>{post.description}</p>
-            <p>{post.author.username}</p>
+            <p><b>{post.willDeliver ? "Will Deliver" : "No Delivery"}</b></p>
             {userToken
             ? <>{post.isAuthor 
                 ? <>
